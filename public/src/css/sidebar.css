@@ -1,0 +1,6 @@
+.sidebar-hover:hover{
+    outline: 2px solid blue;
+    border-radius: 0.375rem;
+    outline-offset: -2px;
+    font-weight: bolder;
+}

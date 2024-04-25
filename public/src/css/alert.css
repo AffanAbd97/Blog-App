@@ -1,0 +1,7 @@
+.alert-style{
+    position: absolute !important;
+    z-index: 100;
+    width: 75rem;
+    right: 2rem;
+    bottom: 2rem;
+}
