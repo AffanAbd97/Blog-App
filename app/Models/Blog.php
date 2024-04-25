@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     use HasFactory;
-    
+    protected $primaryKey = 'idpost';
     protected $table = 'post';
     public $timestamps = false;
 }

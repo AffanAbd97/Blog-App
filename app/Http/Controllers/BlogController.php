@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -11,8 +12,13 @@ class BlogController extends Controller
 {
     public function index()
     {
+        $session = session()->get('user');
+
         $blog = Blog::all();
-        return view('blog.index', ['blog' => $blog]);
+        return view('blog.index', [
+            'blog' => $blog,
+            'session' => $session
+        ]);
     }
 
 
@@ -21,30 +27,33 @@ class BlogController extends Controller
         return view('blog.create');
     }
 
-    public function store(Request $request)
+    public function save(Request $request)
     {
 
         try {
+            $session = session()->get('user');
 
             $validator = Validator::make($request->all(), [
-                'kode_lokasi' => 'required',
-                'keterangan' => 'required',
+                'title' => 'required',
+                'content' => 'required',
             ]);
 
             if ($validator->fails()) {
-                return redirect()->route('blog.create')
+                return redirect()->route('create.blog')
                     ->withErrors($validator)
                     ->withInput();
             }
             $blog = new Blog();
 
 
-            $blog->kode_lokasi = $request->kode_lokasi;
-            $blog->keterangan = $request->keterangan;
+            $blog->title = $request->title;
+            $blog->content = $request->content;
+            $blog->username = $session->username;
+            $blog->date = Carbon::now();
             $blog->save();
 
             Session::flash('sukses', "item Berhasil Ditambahkan");
-            return redirect()->route('blog.index');
+            return redirect()->route('index.blog');
         } catch (\Exception $e) {
 
             $errorMessage = $e->getMessage();
@@ -56,40 +65,46 @@ class BlogController extends Controller
     }
 
 
-    public function show(Lokasi $blog)
+    public function edit(Blog $blog)
     {
-        //
+        $session = session()->get('user');
+        if ($session->username != $blog->username) {
+            Session::flash('gagal', "Bukan Post Anda");
+            return redirect()->route('index.blog');
+        }
+        return view('blog.edit', ['blog' => $blog]);
     }
 
-    public function edit(Lokasi $blog)
-    {
-        return view('blog.edit', compact('lokasi'));
-    }
 
-
-    public function update(Request $request, Lokasi $blog)
+    public function update(Request $request, Blog $blog)
     {
         try {
-
+            $session = session()->get('user');
+            if ($session->username != $blog->username) {
+                Session::flash('gagal', "Bukan Post Anda");
+                return redirect()->route('index.blog');
+            }
             $validator = Validator::make($request->all(), [
-
-                'keterangan' => 'required',
+                'title' => 'required',
+                'content' => 'required',
             ]);
 
             if ($validator->fails()) {
-                return redirect()->back()
+                return redirect()->route('create.blog')
                     ->withErrors($validator)
                     ->withInput();
             }
 
 
 
-
-            $blog->keterangan = $request->keterangan;
+            $blog->title = $request->title;
+            $blog->content = $request->content;
+            $blog->username = $session->username;
+            $blog->date = Carbon::now();
             $blog->save();
 
             Session::flash('sukses', "item Berhasil Ditambahkan");
-            return redirect()->route('blog.index');
+            return redirect()->route('index.blog');
         } catch (\Exception $e) {
 
             $errorMessage = $e->getMessage();
@@ -100,13 +115,18 @@ class BlogController extends Controller
         }
     }
 
-    public function destroy(Lokasi $blog)
+    public function destroy(Blog $blog)
     {
         try {
+            $session = session()->get('user');
+            if ($session->username != $blog->username) {
+                Session::flash('gagal', "Bukan Post Anda");
+                return redirect()->route('index.blog');
+            }
             $blog->delete();
 
             Session::flash('sukses', "item Berhasil Dihapus");
-            return redirect()->route('blog.index');
+            return redirect()->route('index,blog');
         } catch (\Exception $e) {
 
             $errorMessage = $e->getMessage();

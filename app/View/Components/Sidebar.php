@@ -31,10 +31,10 @@ class Sidebar extends Component
 
             ],
             [
-                'url' => '#',
+                'url' => route('index.akun'),
                 'label' => 'Akun',
 
-                'routeName' => 'vendor.index'
+                'routeName' => 'index.akun'
             ],
 
             // Add more menu items as needed

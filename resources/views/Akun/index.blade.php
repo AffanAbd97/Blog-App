@@ -12,7 +12,7 @@
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <div class="d-flex justify-content-between align-items-center w-100">
                                 <h3 class="card-title">Daftar Post</h3>
-                                <a href="{{route('create.blog')}}" class="btn btn-primary">Buat Post</a>
+                                <a href="{{ route('create.blog') }}" class="btn btn-primary">Buat Post</a>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -31,27 +31,15 @@
                                 </thead>
                                 <tbody>
 
-                                    @forelse ($blog as $item)
+                                    @forelse ($akun as $item)
                                         <tr>
                                             <th>{{ $loop->iteration }}</th>
-                                            <td>{{ $item->title }}</td>
-                                            <td>{{ $item->content }}</td>
-                                            <td>{{ $item->date }}</td>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->password }}</td>
+                                            <td>{{ $item->role }}</td>
                                             <td>{{ $item->username }}</td>
                                             <td>
-                                                @if ($session->username == $item->username)
-                                                    <div class="d-flex" style="gap: 0.5rem;">
-                                                        <a class="btn btn-primary"
-                                                            href="{{ route('edit.blog', ['blog' => $item]) }}"
-                                                            role="button">Link</a>
-                                                        <form method="POST"
-                                                            action="{{ route('delete.blog', ['blog' => $item]) }}">
-                                                            @method('delete')
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-danger"> Delete</button>
-                                                        </form>
-                                                    </div>
-                                                @endif
+
                                             </td>
                                         </tr>
                                     @empty

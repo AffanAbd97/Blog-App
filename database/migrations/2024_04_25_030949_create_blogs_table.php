@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('post', function (Blueprint $table) {
-            $table->id('idpost');
+            $table->id('idpost')->autoIncrement();;
             $table->text('title');
             $table->text('content');
             $table->dateTime('date');
