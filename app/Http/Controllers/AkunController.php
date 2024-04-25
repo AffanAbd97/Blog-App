@@ -35,7 +35,7 @@ class AkunController extends Controller
             $validator = Validator::make($request->all(), [
                 'username' => 'required',
                 'name' => 'required',
-                'password' => 'required',
+                'password' => 'required|confirmed',
             ]);
 
             if ($validator->fails()) {
@@ -45,11 +45,11 @@ class AkunController extends Controller
             }
             $akun = new Akun();
 
-
+            $hashedPassword = sha1('jksdhf832746aiH{}{()&(*&(*' . md5($request->password) . 'HdfevgyDDw{}{}{;;*766&*&*');
 
             $akun->name = $request->name;
             $akun->username = $request->username;
-            $akun->password = $request->password;
+            $akun->password = $hashedPassword;
             $akun->role = 'Author';
 
             $akun->save();
@@ -69,8 +69,8 @@ class AkunController extends Controller
 
     public function edit($username)
     {
-        $akun=Akun::where('username',$username)->first();
-        
+        $akun = Akun::where('username', $username)->first();
+
         return view('Akun.edit', ['akun' => $akun]);
     }
 
@@ -79,11 +79,11 @@ class AkunController extends Controller
     {
         try {
             $session = session()->get('user');
-            $akun=Akun::where('username',$username)->first();
+            $akun = Akun::where('username', $username)->first();
             $validator = Validator::make($request->all(), [
                 'username' => 'required',
                 'name' => 'required',
-                'password' => 'required',
+                'password' => 'required|confirmed',
             ]);
 
             if ($validator->fails()) {
@@ -93,11 +93,11 @@ class AkunController extends Controller
             }
             $akun = new Akun();
 
-
+            $hashedPassword = sha1('jksdhf832746aiH{}{()&(*&(*' . md5($request->password) . 'HdfevgyDDw{}{}{;;*766&*&*');
 
             $akun->name = $request->name;
             $akun->username = $request->username;
-            $akun->password = $request->password;
+            $akun->password = $hashedPassword;
             $akun->role = 'Author';
             $akun->save();
 
@@ -117,11 +117,12 @@ class AkunController extends Controller
     {
         try {
             $session = session()->get('user');
-            $akun=Akun::where('username',$username)->first();
-            $akun->delete();
+            $akun = Akun::where('username', $username)->first();
+         
+            $akun->forceDelete();
 
             Session::flash('sukses', "item Berhasil Dihapus");
-            return redirect()->route('index,Akun');
+            return redirect()->route('index.akun');
         } catch (\Exception $e) {
 
             $errorMessage = $e->getMessage();

@@ -30,9 +30,10 @@ class BlogController extends Controller
     public function save(Request $request)
     {
 
+
         try {
             $session = session()->get('user');
-
+          
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
                 'content' => 'required',

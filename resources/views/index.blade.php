@@ -26,6 +26,12 @@
                                     </div>
                                 </div>
                             @empty
+                            <div class="card" >
+                                <div class="card-body">
+                                    <h5 class="card-title">No Posts</h5>
+                                   
+                                </div>
+                            </div>
                             @endforelse
                         </div>
                         <!-- /.card-body -->

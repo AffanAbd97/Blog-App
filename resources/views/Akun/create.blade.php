@@ -20,34 +20,45 @@
                                 <div class="form-group">
                                     <label for="name">Nama Lengkap</label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror "
-                                        id="name" name="name" value="{{ old('name') }}" placeholder="Judul">
-                                        @error('name')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
+                                        id="name" name="name" value="{{ old('name') }}">
+                                    @error('name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
 
                                 </div>
                                 <div class="form-group">
                                     <label for="username">Username</label>
                                     <input type="text" class="form-control @error('username') is-invalid @enderror "
-                                        id="username" name="username" value="{{ old('username') }}" placeholder="Judul">
-                                        @error('username')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
+                                        id="username" name="username" value="{{ old('username') }}">
+                                    @error('username')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
 
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="text" class="form-control @error('password') is-invalid @enderror "
-                                        id="password" name="password" value="{{ old('password') }}" placeholder="Judul">
-                                        @error('password')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror "
+                                        id="password" name="password">
+                                    @error('password')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Confirm Password</label>
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror "
+                                        id="password" name="password_confirmation">
+                                    @error('password')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
 
                                 </div>
 

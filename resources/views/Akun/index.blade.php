@@ -12,7 +12,7 @@
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <div class="d-flex justify-content-between align-items-center w-100">
                                 <h3 class="card-title">Daftar Post</h3>
-                                <a href="{{ route('create.blog') }}" class="btn btn-primary">Buat Akun</a>
+                                <a href="{{ route('create.akun') }}" class="btn btn-primary">Buat Akun</a>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -22,10 +22,10 @@
                                     <tr>
                                         <th>#</th>
 
-                                        <th>Judul</th>
-                                        <th>Konten</th>
-                                        <th>Tanggal Di Buat</th>
-                                        <th>Author</th>
+                                        <th>Nama</th>
+                                        <th>Password</th>
+                                        <th>Username</th>
+                                        <th>Role</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -36,16 +36,16 @@
                                             <th>{{ $loop->iteration }}</th>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->password }}</td>
-                                            <td>{{ $item->role }}</td>
                                             <td>{{ $item->username }}</td>
+                                            <td>{{ $item->role }}</td>
                                             <td>
 
                                                 <div class="d-flex" style="gap: 0.5rem;">
                                                     <a class="btn btn-primary"
-                                                        href="{{ route('edit.akun', ['username' => $item->username]) }}"
+                                                        href="{{ route('edit.akun', ['username' => $item]) }}"
                                                         role="button">Edit</a>
                                                     <form method="POST"
-                                                        action="{{ route('delete.akun', ['username' => $item->username]) }}">
+                                                        action="{{ route('delete.akun', ['username' => $item]) }}">
                                                         @method('delete')
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger"> Delete</button>

@@ -22,6 +22,7 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
         $credentials = $request->only('username', 'password');
+        $credentials['password'] = sha1('jksdhf832746aiH{}{()&(*&(*' . md5($credentials['password']) . 'HdfevgyDDw{}{}{;;*766&*&*');
         $user = Akun::where('username', $credentials['username'])->first();
         $correctPassword = $credentials['password'] == $user->password;
 
