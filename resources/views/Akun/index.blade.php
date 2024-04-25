@@ -37,9 +37,22 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->password }}</td>
                                             <td>{{ $item->role }}</td>
+
                                             <td>{{ $item->username }}</td>
                                             <td>
-
+                                              
+                                                    <div class="d-flex" style="gap: 0.5rem;">
+                                                        <a class="btn btn-primary"
+                                                            href="{{ route('edit.akun', ['username' => $item->username]) }}"
+                                                            role="button">Link</a>
+                                                        <form method="POST"
+                                                            action="{{ route('delete.akun', ['username' => $item->username]) }}">
+                                                            @method('delete')
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-danger"> Delete</button>
+                                                        </form>
+                                                    </div>
+                                              
                                             </td>
                                         </tr>
                                     @empty

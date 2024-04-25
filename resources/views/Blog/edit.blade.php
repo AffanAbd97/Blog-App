@@ -15,7 +15,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="{{ route('update.blog') }}" method="POST">
+                            <form action="{{ route('update.blog',['blog'=>$blog]) }}" method="POST">
                                 @method('PUT')
                                 @csrf
                                 <div class="form-group">

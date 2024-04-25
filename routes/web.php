@@ -22,8 +22,8 @@ Route::delete('/blog/{blog}', [BlogController::class, 'destroy'])->name('delete.
 
 
 Route::get('/akun', [AkunController::class, 'index'])->name('index.akun');
-Route::get('/akun/{akun}/edit', [AkunController::class, 'edit'])->name('edit.akun');
+Route::get('/akun/{username}/edit', [AkunController::class, 'edit'])->name('edit.akun');
 Route::get('/akun/create', [AkunController::class, 'create'])->name('create.akun');
 Route::post('/akun', [AkunController::class, 'save'])->name('save.akun');
-Route::put('/akun/{akun}', [AkunController::class, 'update'])->name('update.akun');
-Route::delete('/akun/{akun}', [AkunController::class, 'destroy'])->name('delete.akun');
+Route::put('/akun/{username}', [AkunController::class, 'update'])->name('update.akun');
+Route::delete('/akun/{username}', [AkunController::class, 'destroy'])->name('delete.akun');

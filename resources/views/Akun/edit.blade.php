@@ -15,7 +15,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="{{ route('update.akun') }}" method="POST">
+                            <form action="{{ route('update.akun',['username'=>$akun->username]) }}" method="POST">
                                 @method('put')
                                 @csrf
                                 <div class="form-group">

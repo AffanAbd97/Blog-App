@@ -67,22 +67,23 @@ class AkunController extends Controller
     }
 
 
-    public function edit(Akun $akun)
+    public function edit($username)
     {
+        $akun=Akun::where('username',$username)->first();
         $session = session()->get('user');
         if ($session->username != $akun->username) {
             Session::flash('gagal', "Bukan Post Anda");
             return redirect()->route('index.akun');
         }
-        return view('Akun.edit', ['Akun' => $akun]);
+        return view('Akun.edit', ['akun' => $akun]);
     }
 
 
-    public function update(Request $request, Akun $akun)
+    public function update(Request $request, $username)
     {
         try {
             $session = session()->get('user');
-
+            $akun=Akun::where('username',$username)->first();
             $validator = Validator::make($request->all(), [
                 'username' => 'required',
                 'name' => 'required',
@@ -116,11 +117,11 @@ class AkunController extends Controller
         }
     }
 
-    public function destroy(Akun $akun)
+    public function destroy($username)
     {
         try {
             $session = session()->get('user');
-
+            $akun=Akun::where('username',$username)->first();
             $akun->delete();
 
             Session::flash('sukses', "item Berhasil Dihapus");
