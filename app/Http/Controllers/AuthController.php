@@ -35,5 +35,13 @@ class AuthController extends Controller
         return redirect()->route('home');
     }
 
+
+    public function logout()
+    {
+        Session::forget('user');
+
+        return redirect()->route('login');
+
+    }
 }
 

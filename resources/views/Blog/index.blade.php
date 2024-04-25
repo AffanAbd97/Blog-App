@@ -43,7 +43,7 @@
                                                     <div class="d-flex" style="gap: 0.5rem;">
                                                         <a class="btn btn-primary"
                                                             href="{{ route('edit.blog', ['blog' => $item]) }}"
-                                                            role="button">Link</a>
+                                                            role="button">Edit</a>
                                                         <form method="POST"
                                                             action="{{ route('delete.blog', ['blog' => $item]) }}">
                                                             @method('delete')

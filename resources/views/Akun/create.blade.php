@@ -15,13 +15,35 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="{{ route('save.blog') }}" method="POST">
+                            <form action="{{ route('save.akun') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="title">Judul</label>
-                                    <input type="text" class="form-control @error('title') is-invalid @enderror "
-                                        id="title" name="title" value="{{ old('title') }}" placeholder="Judul">
-                                        @error('title')
+                                    <label for="name">Nama Lengkap</label>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror "
+                                        id="name" name="name" value="{{ old('name') }}" placeholder="Judul">
+                                        @error('name')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control @error('username') is-invalid @enderror "
+                                        id="username" name="username" value="{{ old('username') }}" placeholder="Judul">
+                                        @error('username')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="text" class="form-control @error('password') is-invalid @enderror "
+                                        id="password" name="password" value="{{ old('password') }}" placeholder="Judul">
+                                        @error('password')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -29,18 +51,6 @@
 
                                 </div>
 
-
-
-                                <div class="form-group ">
-                                    <label for="content">Content</label>
-                                    <textarea type="text" class="form-control  @error('content') is-invalid @enderror" id="content" name="content" placeholder="content">{{ old('content') }}</textarea>
-                                    @error('content')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-
-                                </div>
 
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>

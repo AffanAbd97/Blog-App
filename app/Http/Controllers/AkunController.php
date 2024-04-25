@@ -47,9 +47,9 @@ class AkunController extends Controller
 
 
 
-            $akun->name = $session->name;
-            $akun->username = $session->username;
-            $akun->password = $session->password;
+            $akun->name = $request->name;
+            $akun->username = $request->username;
+            $akun->password = $request->password;
             $akun->role = 'Author';
 
             $akun->save();
@@ -70,11 +70,7 @@ class AkunController extends Controller
     public function edit($username)
     {
         $akun=Akun::where('username',$username)->first();
-        $session = session()->get('user');
-        if ($session->username != $akun->username) {
-            Session::flash('gagal', "Bukan Post Anda");
-            return redirect()->route('index.akun');
-        }
+        
         return view('Akun.edit', ['akun' => $akun]);
     }
 
@@ -99,9 +95,9 @@ class AkunController extends Controller
 
 
 
-            $akun->name = $session->name;
-            $akun->username = $session->username;
-            $akun->password = $session->password;
+            $akun->name = $request->name;
+            $akun->username = $request->username;
+            $akun->password = $request->password;
             $akun->role = 'Author';
             $akun->save();
 

@@ -14,6 +14,7 @@ class Sidebar extends Component
      * @var array
      */
     public $menuItems;
+    public $session;
 
     /**
      * Create a new component instance.
@@ -39,8 +40,12 @@ class Sidebar extends Component
 
             // Add more menu items as needed
         ];
-        $isAdmin = session()->get('user') && session()->get('user')->role == 'Admin';
-
+        $this->session = session()->get('user');
+        $isAdmin = $this->session && session()->get('user')->role == 'Admin';
+        if (!$this->session) {
+            unset($this->menuItems[1]); // Assuming 'Supplier' menu item is at index 1
+            unset($this->menuItems[0]); // Assuming 'Supplier' menu item is at index 1
+        }
         // If the user is not an admin, remove the menu item
         if (!$isAdmin) {
             unset($this->menuItems[1]); // Assuming 'Supplier' menu item is at index 1
