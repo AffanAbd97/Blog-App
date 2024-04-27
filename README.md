@@ -14,12 +14,12 @@
 
 ```
 username:admin
-password:123456
+password:12345678
 ```
 
 #### User
 
 ```
 username:user
-password:123456
+password:12345678
 ```
